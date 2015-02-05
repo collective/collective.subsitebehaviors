@@ -1,0 +1,20 @@
+<a metal:define-macro="portal_logo"
+   id="portal-logo"
+   accesskey="1"
+   tal:attributes="href context/@@plone_portal_state/navigation_root_url;
+                   title context/@@plone_portal_state/navigation_root_title;
+                   class python: view.subsitelogo and 'subsiteLogo' or None"
+   i18n:domain="plone">
+
+    <img tal:condition="python: view.subsitelogo and view.scaled" src="logo.jpg" alt=""
+         tal:replace="structure context/@@images/logoImage/logo" />
+         
+    <img tal:condition="python: view.subsitelogo and not view.scaled" src="logo.jpg" alt=""
+         tal:replace="structure context/@@images/logoImage" />
+   
+	 <img tal:condition="exists: view/logo_tag" src="logo.jpg" alt=""
+			tal:replace="structure view/logo_tag" />
+
+</a>
+   
+    
