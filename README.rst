@@ -34,6 +34,13 @@ Here, because Dexterity field names cannot contain dash (ie. '-') characters, th
 CamelCase notation is used (as in 'AttrName', above). So for example background-color
 css attribute is specified 'BackgroundColor'.
 
-This may sound complex at first sight, but it's really not- for example to define a
-custom background color for your content, just add a Dexterity field with
-an id 'css_tagbody_cssattrBackgroundColor'.
+If there is no css attribute name found in the field id, it is assumed the field value
+contains a full regular 'attribute: value' css style statement, without the ending
+semicolon.
+
+An example:
+
+All this may sound complex at first sight, but it's really not- to define a custom
+background color for your content, just add a Dexterity field whose id is
+'css_tagbody_cssattrBackgroundColor'.
+ 
