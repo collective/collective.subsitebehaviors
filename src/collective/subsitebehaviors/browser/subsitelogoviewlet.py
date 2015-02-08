@@ -14,22 +14,18 @@ class SubsiteLogoViewlet(LogoViewlet):
 
     def __init__(self, context, request, view, manager=None):
         super(SubsiteLogoViewlet, self).__init__(context, request, view, manager)
-        self.scaler = None
         self.subsitelogo = False
-        self.scaled = False
+        self.logo_tag = None
 
     def update(self):
 
         nav_root = api.portal.get_navigation_root(context=self.context)
-        self.logo = getattr(self.context, 'logoImage', None)
 
-        if ISubSite.providedBy(nav_root) and self.logo:
+        if ISubSite.providedBy(nav_root) and hasattr(nav_root, 'logoImage'):
             self.subsitelogo = True
-            scaler = api.content.get_view("images", self.context, self.request)
-            if "logo" in scaler.getAvailableSizes():
-               self.scaled = True
-            else:
-               self.scaled = False
+            scales = api.content.get_view("images", nav_root, self.request)
+            scale = scales.scale("logoImage", "logo")
+            self.logo_tag = scale.tag() if scale else scales.tag("logoImage")
         else:
            self.subsitelogo = False
            super(SubsiteLogoViewlet, self).update()
