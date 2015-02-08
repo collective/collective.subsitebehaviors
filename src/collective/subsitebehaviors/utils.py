@@ -1,5 +1,6 @@
 from itertools import chain
 from zope.component import getUtility
+from zope.component.interfaces import ComponentLookupError
 from zope.schema import getFieldsInOrder
 from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.interfaces import IDexterityFTI
@@ -8,7 +9,13 @@ from plone.dexterity.interfaces import IDexterityFTI
 def all_dexterity_fieldnames(obj):
    "the schema from FTI plus query IBehaviorAssignable"
 
-   fti = getUtility(IDexterityFTI, name=obj.portal_type)
+   try:
+      typename = obj.getPortalTypeName()
+      fti = getUtility(IDexterityFTI, name=typename)
+   except ComponentLookupError as exc:
+      # has no fti, what is this, an ancient Archetype?
+      return []
+      
    schema = fti.lookupSchema()
    fields = [getFieldsInOrder(schema)]
 
