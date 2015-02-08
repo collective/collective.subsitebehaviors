@@ -17,13 +17,15 @@ class CSSViewlet(ViewletBase):
 
    def __init__(self, context, request, view, manager=None):
       super(CSSViewlet, self).__init__(context, request, view, manager)
-      self.nav_root = None
+      self.subsite = None
 
    def render(self):
-      self.nav_root = api.portal.get_navigation_root(context=self.context)
-      if ISubSite.providedBy(self.nav_root):
+      nav_root = api.portal.get_navigation_root(context=self.context)
+      if ISubSite.providedBy(nav_root):
+         self.subsite = nav_root
          return self.template()
       else:
+         self.subsite = None
          return ''
 
 
@@ -42,7 +44,11 @@ class CSSViewlet(ViewletBase):
  
    def get_css(self):
       "generate css from specially formatted fields"
-      css_fields = [n for n in all_dexterity_fieldnames(self.context) if n.startswith("css_")]
+      
+      if not self.subsite:
+         return ''
+         
+      css_fields = [n for n in all_dexterity_fieldnames(self.subsite) if n.startswith("css_")]
       styles = []
       
       for css_fn in css_fields:
