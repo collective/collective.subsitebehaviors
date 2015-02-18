@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.3 (unreleased)
+----------------
+
+- showing fallback logo had been broken (sic) - fixed now
+
 0.2 (unreleased)
 ----------------
 
