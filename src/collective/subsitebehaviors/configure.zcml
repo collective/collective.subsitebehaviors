@@ -11,8 +11,8 @@
     <include package=".browser" />
 
     <plone:behavior
-        title="Subsite logo"
-        description="Applies custom logo for any navigation root"
+        title="Subsite"
+        description="Marks content as a subsite"
         provides=".behaviors.ISubSite"
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
     />

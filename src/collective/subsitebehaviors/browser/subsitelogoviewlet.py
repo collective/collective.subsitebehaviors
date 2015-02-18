@@ -21,7 +21,7 @@ class SubsiteLogoViewlet(LogoViewlet):
 
         nav_root = api.portal.get_navigation_root(context=self.context)
 
-        if ISubSite.providedBy(nav_root) and hasattr(nav_root, 'logoImage'):
+        if ISubSite.providedBy(nav_root) and getattr(nav_root, 'logoImage'):
             self.subsitelogo = True
             scales = api.content.get_view("images", nav_root, self.request)
             scale = scales.scale("logoImage", "logo")
