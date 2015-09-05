@@ -10,11 +10,11 @@ class ISubSite(model.Schema):
    """Behavior interface to add a customer logo etc.
    """
 
-   model.fieldset('appearance', label=u"Appearance", fields=['logoImage'])
+   model.fieldset('appearance', label=_("fieldset_appearance", u"Appearance"), fields=['logoImage'])
 
    logoImage = NamedBlobImage(
-      title=_(u"Custom logo"),
-      description=u"Custom logo to be used",
+      title=_("field_customlogo", u"Custom logo"),
+      description=_("field_customlogo_description", u"Custom logo to be used"),
       required=False
    )
 
