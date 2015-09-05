@@ -28,6 +28,6 @@ class TestInstall(unittest.TestCase):
     # browserlayer.xml
     def test_browserlayer(self):
         """Test that ICollectiveSubsitebehaviorsLayer is registered."""
-        from collective.subsitebehaviors.interfaces import ICollectiveSubsitebehaviorsLayer
+        from collective.subsitebehaviors.interfaces import ICollectiveSubsiteBehaviorsLayer
         from plone.browserlayer import utils
-        self.assertIn(ICollectiveSubsitebehaviorsLayer, utils.registered_layers())
+        self.assertIn(ICollectiveSubsiteBehaviorsLayer, utils.registered_layers())

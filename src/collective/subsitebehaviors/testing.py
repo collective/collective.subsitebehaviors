@@ -16,7 +16,7 @@ from plone.testing import z2
 import collective.subsitebehaviors
 
 
-class CollectiveSubsitebehaviorsLayer(PloneSandboxLayer):
+class CollectiveSubsiteBehaviorsLayer(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
     products = [
@@ -46,7 +46,7 @@ class CollectiveSubsitebehaviorsLayer(PloneSandboxLayer):
             z2.uninstallProduct(app, product)
 
 
-FIXTURE = CollectiveSubsitebehaviorsLayer(
+FIXTURE = CollectiveSubsiteBehaviorsLayer(
     name='FIXTURE'
     )
 
