@@ -10,13 +10,15 @@
 
     <include package=".browser" />
 
+    <include package="plone.behavior" file="meta.zcml" />
+
     <plone:behavior
         title="Subsite"
         description="Marks content as a subsite"
         provides=".behaviors.ISubSite"
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
     />
-   
+
     <genericsetup:registerProfile
         name="default"
         title="collective.subsitebehaviors"
@@ -32,5 +34,5 @@
         description="Uninstalls collective.subsitebehavior."
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-        
+
 </configure>

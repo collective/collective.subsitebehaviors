@@ -42,6 +42,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'plone.api',
+        'plone.behavior',
         'setuptools',
         'z3c.jbot',
         'plone.app.theming',
