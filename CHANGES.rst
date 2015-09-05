@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.4 (5.9. 2015)
+---------------
+
+- properly require plone.behavior
+- minor docs improvements
+- fix browser layer name so tests will pass
+- finish i18n bootstrap, w/ Finnish translations
+
 0.3 (unreleased)
 ----------------
 
