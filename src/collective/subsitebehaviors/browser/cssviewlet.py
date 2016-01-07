@@ -8,7 +8,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ..behaviors import ISubSite
 from ..utils import all_dexterity_fieldnames
 
-decamel_regxp = re.compile('(.)([A-Z][a-z]+)')
+decamel_regxp = re.compile('[A-Z][^A-Z]+')
 
 
 class CSSViewlet(ViewletBase):
@@ -41,35 +41,34 @@ class CSSViewlet(ViewletBase):
                parsed_spec[idx] = value
       return parsed_spec
 
- 
+
    def get_css(self):
       "generate css from specially formatted fields"
-      
+
       if not self.subsite:
          return ''
-         
+
       css_fields = [n for n in all_dexterity_fieldnames(self.subsite) if n.startswith("css_")]
       styles = []
-      
+
       for css_fn in css_fields:
          tag, id, klass, cssattr = self.parse_fieldname(css_fn[4:]) # strip prefix
          selector = tag
-         selector += '#' + id if id else ''
-         selector += '.' + klass if klass else ''
-         
+         selector += '#' + '-'.join(decamel_regxp.findall(id)).lower() if id else ''
+         selector += '.' + '-'.join(decamel_regxp.findall(klass)).lower() if klass else ''
+
          # convert BackgroundColor to background-color
-         cssattr =  decamel_regxp.sub(r'\1-\2', cssattr) if cssattr else ''
+         cssattr =  '-'.join(decamel_regxp.findall(cssattr)).lower() if cssattr else ''
 
          # if cssatr, field value has just css attr value, othewise full 'attr: val' css"
          field_value = getattr(self.context, css_fn)
          if not field_value:
             field_value = ''
          attr_plus_val = cssattr + ": " + field_value if cssattr else field_value
-         
-         style = selector + " {\n  %s;\n}" % attr_plus_val         
+
+         style = selector + " {\n  %s;\n}" % attr_plus_val
          styles.append(style)
 
       return '\n'.join(styles)
-      
-      
-      
+
+
