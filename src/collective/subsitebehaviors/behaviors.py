@@ -1,14 +1,13 @@
 from plone.autoform.interfaces import IFormFieldProvider
-from zope.interface import alsoProvides
+from zope.interface import provider
 from plone.namedfile.field import NamedBlobImage
 from plone.supermodel import model
 
-
 from . import _
 
+@provider(IFormFieldProvider)
 class ISubSite(model.Schema):
-   """Behavior interface to add a customer logo etc.
-   """
+   "Behavior interface to add a customer logo etc."
 
    model.fieldset('appearance', label=_("fieldset_appearance", u"Appearance"), fields=['logoImage'])
 
@@ -18,4 +17,3 @@ class ISubSite(model.Schema):
       required=False
    )
 
-alsoProvides(ISubSite, IFormFieldProvider)
