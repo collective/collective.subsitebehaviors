@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.5 (7.1. 2016)
+---------------
+
+- work correctly with CSS class / id names that contain dashes
+- work correctly in cases where there are several dashes
+
 0.4 (5.9. 2015)
 ---------------
 

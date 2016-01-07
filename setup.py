@@ -19,7 +19,7 @@ long_description = (
 
 setup(
     name='collective.subsitebehaviors',
-    version='0.4',
+    version='0.5',
     description="Custom logo and css behaviors for subsites",
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
